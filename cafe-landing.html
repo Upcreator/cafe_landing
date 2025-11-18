@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кофейный уголок - Уютное кафе в центре города</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #8B4513;
+            --secondary-color: #D2691E;
+            --accent-color: #FFD700;
+            --text-dark: #2C1810;
+            --text-light: #F5F5DC;
+            --bg-light: #FFF8DC;
+            --bg-cream: #FAEBD7;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--text-light);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: "☕";
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        #hero {
+            background: linear-gradient(rgba(139, 69, 19, 0.7), rgba(139, 69, 19, 0.7)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23D2691E" width="1200" height="600"/><circle fill="%238B4513" cx="200" cy="100" r="80" opacity="0.3"/><circle fill="%238B4513" cx="800" cy="400" r="100" opacity="0.3"/><circle fill="%23FFD700" cx="1000" cy="150" r="60" opacity="0.2"/></svg>');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 60px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--accent-color);
+            color: var(--text-dark);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+            background-color: #FFC700;
+        }
+
+        /* About Section */
+        #about {
+            padding: 5rem 2rem;
+            background-color: var(--bg-light);
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+            border-radius: 2px;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-image {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            height: 400px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .about-image:hover {
+            transform: scale(1.05);
+        }
+
+        /* Menu Section */
+        #menu {
+            padding: 5rem 2rem;
+            background-color: var(--bg-cream);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .menu-item {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .menu-item-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .menu-item h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-item p {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .menu-item-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        /* Contacts Section */
+        #contacts {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--text-light);
+        }
+
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .contact-card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .contact-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-dark);
+            color: var(--text-light);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer p {
+            font-size: 1rem;
+        }
+
+        .social-links {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+            transform: scale(1.2);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                height: 300px;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contacts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            nav ul {
+                gap: 0.5rem;
+            }
+
+            nav a {
+                padding: 0.3rem 0.6rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">Кофейный уголок</div>
+            <nav>
+                <ul>
+                    <li><a href="#hero">Главная</a></li>
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#menu">Меню</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <h1>Добро пожаловать в Кофейный уголок</h1>
+                <p>Место, где каждая чашка кофе — это история, а каждый момент — особенный</p>
+                <a href="#menu" class="btn">Посмотреть меню</a>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="section-container">
+                <h2 class="section-title">О нас</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>
+                            <strong>Кофейный уголок</strong> — это уютное кафе в самом сердце города, 
+                            где мы создаём атмосферу тепла и комфорта для каждого гостя. 
+                            Наша миссия — дарить вам незабываемые моменты за чашкой ароматного кофе.
+                        </p>
+                        <p>
+                            Мы тщательно отбираем зёрна со всего мира, работая напрямую с фермерами, 
+                            чтобы гарантировать высочайшее качество каждого напитка. Наши опытные 
+                            бариста с любовью готовят каждую чашку, превращая её в маленькое произведение искусства.
+                        </p>
+                        <p>
+                            У нас вы найдёте не только отличный кофе, но и домашнюю выпечку, 
+                            лёгкие закуски и дружелюбную атмосферу. Приходите работать с ноутбуком, 
+                            встречайтесь с друзьями или просто наслаждайтесь моментом тишины.
+                        </p>
+                    </div>
+                    <div class="about-image">
+                        ☕
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="menu">
+            <div class="section-container">
+                <h2 class="section-title">Наше меню</h2>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-icon">☕</div>
+                        <h3>Эспрессо</h3>
+                        <p>Классический итальянский эспрессо из свежеобжаренных зёрен арабики</p>
+                        <div class="menu-item-price">150 ₽</div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-item-icon">🥛</div>
+                        <h3>Капучино</h3>
+                        <p>Нежный напиток с бархатистой молочной пенкой и латте-артом</p>
+                        <div class="menu-item-price">220 ₽</div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-item-icon">🍰</div>
+                        <h3>Чизкейк</h3>
+                        <p>Классический нью-йоркский чизкейк с ягодным соусом</p>
+                        <div class="menu-item-price">280 ₽</div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-item-icon">🥐</div>
+                        <h3>Круассан</h3>
+                        <p>Французский круассан из слоёного теста, свежая выпечка каждое утро</p>
+                        <div class="menu-item-price">180 ₽</div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-item-icon">🍵</div>
+                        <h3>Раф кофе</h3>
+                        <p>Авторский напиток со сливками и ванилью — наша фирменная классика</p>
+                        <div class="menu-item-price">250 ₽</div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-item-icon">🥗</div>
+                        <h3>Панини</h3>
+                        <p>Горячий сэндвич с курицей, сыром моцарелла и свежими овощами</p>
+                        <div class="menu-item-price">320 ₽</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacts">
+            <div class="section-container">
+                <h2 class="section-title" style="color: var(--text-light);">Контакты</h2>
+                <div class="contacts-grid">
+                    <div class="contact-card">
+                        <div class="contact-card-icon">📍</div>
+                        <h3>Адрес</h3>
+                        <p>г. Москва, ул. Центральная, д. 15<br>
+                        Метро "Арбатская", выход 2<br>
+                        2 минуты пешком от метро</p>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-card-icon">⏰</div>
+                        <h3>Время работы</h3>
+                        <p>Понедельник - Пятница: 08:00 - 22:00<br>
+                        Суббота - Воскресенье: 09:00 - 23:00<br>
+                        Без перерывов и выходных</p>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-card-icon">📞</div>
+                        <h3>Связь</h3>
+                        <p>Телефон: +7 (495) 123-45-67<br>
+                        Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7a13141c153a19151c1c1f191508141f0854080f">[email&#160;protected]</a><br>
+                        Бронирование столиков приветствуется</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="section-container">
+            <p>&copy; 2024 Кофейный уголок. Все права защищены.</p>
+            <div class="social-links">
+                <a href="#" title="Instagram">📷</a>
+                <a href="#" title="Facebook">📘</a>
+                <a href="#" title="VKontakte">🔵</a>
+                <a href="#" title="Telegram">✈️</a>
+            </div>
+        </div>
+    </footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>
